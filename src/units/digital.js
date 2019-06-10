@@ -1,4 +1,4 @@
-import units from '../utils.js';
+import utils from '../utils.js';
 
 const digitals = {
   bits: {
@@ -78,4 +78,4 @@ const digitals = {
   }
 }
 
-export default units(digitals);
+export default utils(digitals);

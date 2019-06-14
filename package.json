@@ -2,16 +2,23 @@
   "name": "units-converter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/units-converter.cjs.js",
+  "module": "dist/units-converter.iife.js",
+  "browser": "dist/units-converter.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel --presets es2015 -d lib/ src"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "mocha tests/*.test.js",
+    "pretest": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
-  }
+    "mocha": "^6.1.4",
+    "rollup": "^1.0.0"
+  },
+  "files": [
+    "dist"
+  ]
 }

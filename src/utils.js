@@ -101,10 +101,8 @@ Converter.prototype.measures = function () {
     return;
 };
 
-function converter(definitions) {
+export default function converter(definitions) {
     return (val) => {
         return new Converter(val, definitions)
     }
 }
-
-module.exports = converter;

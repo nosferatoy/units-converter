@@ -2,20 +2,23 @@
   "name": "units-converter",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/units-converter.cjs.js",
-  "module": "dist/units-converter.iife.js",
-  "browser": "dist/units-converter.umd.js",
+  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "mocha tests/*.test.js",
-    "pretest": "npm run build"
+    "test": "jest --coverage",
+    "pretest": "npm run build",
+    "prepublishOnly": "agadoo"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "mocha": "^6.1.4",
+    "@babel/preset-env": "^7.4.5",
+    "agadoo": "^1.0.1",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
     "rollup": "^1.0.0"
   },
   "files": [

@@ -9,8 +9,7 @@
     "test": "jest --coverage",
     "lint": "eslint '**/*.js' --fix",
     "pretest": "agadoo",
-    "prebuild": "eslint '**/*.js'",
-    "pre-commit": "eslint '**/*.js'"
+    "pre-commit": "eslint '**/*.js' --fix"
   },
   "author": "",
   "license": "ISC",

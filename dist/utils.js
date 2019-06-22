@@ -1,13 +1,6 @@
 const Converter = function (numerator, definitions) {
   this.definitions = definitions;
-
   this.val = numerator;
-
-  // TODO check if the deonominator is needed
-  // if (denominator)
-  //     this.val = numerator / denominator;
-  // else
-  //     this.val = numerator;
 };
 
 Converter.prototype.from = function (from) {
@@ -26,9 +19,6 @@ Converter.prototype.to = function (to) {
   if (!this.origin) { throw new Error('.to must be called after .from') }
 
   this.destination = this.getUnit(to);
-
-  // console.log(" origin : ", this.origin);
-  // console.log(" destination : ", this.destination)
 
   let result;
 
@@ -62,21 +52,18 @@ Converter.prototype.toBest = function (options) {
 };
 
 Converter.prototype.getUnit = function (abbr) {
-  let found;
+  const systemNames = Object.keys(this.definitions);
+  const found = systemNames.map(systemName => {
+    if (this.definitions[systemName][abbr]) {
+      return {
+        abbr: abbr,
+        system: systemName,
+        unit: this.definitions[systemName][abbr]
+      }
+    }
+  }).filter(item => item !== undefined);
 
-  Object.keys(this.definitions).forEach(system => {
-    this.definitions[system].units
-      .filter(unit => { return unit.alias === abbr })
-      .forEach(unit => {
-        found = {
-          abbr: abbr,
-          system: system,
-          unit: unit
-        };
-      });
-  });
-
-  return found !== undefined ? found : false
+  return Array.isArray(found) ? found[0] : undefined
 };
 
 Converter.prototype.list = function (measure) {

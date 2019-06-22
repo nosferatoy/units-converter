@@ -1,7 +1,11 @@
 import utils from '../utils.js';
 
+const RATIO = 8;
+
 const digitals = {
   bits: {
+    baseUnit: 'b',
+    transform: (val) => { return RATIO * val },
     b: {
       name: {
         singular: 'Bit',
@@ -40,6 +44,8 @@ const digitals = {
   },
 
   bytes: {
+    baseUnit: 'B',
+    transform: (val) => { return val * 1 / RATIO },
     B: {
       name: {
         singular: 'Byte',

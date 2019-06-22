@@ -1,4 +1,4 @@
-import { volume } from '../dist/index.js'
+import { volume } from '../src/index.js'
 
 const ACCURACY = 1 / 1000
 const percentError = (expected, actual) => {

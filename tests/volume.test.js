@@ -1,4 +1,4 @@
-import { volume } from '../dist/index.esm.js'
+import { volume } from '../dist/index.js'
 
 const ACCURACY = 1 / 1000
 const percentError = (expected, actual) => {

@@ -8,8 +8,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "jest --coverage",
-    "pretest": "npm run build",
-    "prepublishOnly": "agadoo"
+    "pretest": "agadoo"
   },
   "author": "",
   "license": "ISC",

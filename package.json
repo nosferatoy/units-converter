@@ -2,13 +2,15 @@
   "name": "units-converter",
   "version": "1.0.0",
   "description": "",
-  "module": "dist/index.esm.js",
-  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "jest --coverage",
-    "pretest": "agadoo"
+    "lint": "eslint '**/*.js' --fix",
+    "pretest": "agadoo",
+    "prebuild": "eslint '**/*.js'",
+    "pre-commit": "eslint '**/*.js'"
   },
   "author": "",
   "license": "ISC",
@@ -17,10 +19,18 @@
     "@babel/preset-env": "^7.4.5",
     "agadoo": "^1.0.1",
     "babel-jest": "^24.8.0",
+    "eslint": "^6.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "rollup": "^1.0.0"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "eslint-config-standard": "^12.0.0"
+  }
 }

@@ -1,5 +1,3 @@
-"use strict";
-
 const Converter = function (numerator, definitions) {
     this.definitions = definitions;
 
@@ -10,7 +8,7 @@ const Converter = function (numerator, definitions) {
     //     this.val = numerator / denominator;
     // else
     //     this.val = numerator;
-}
+};
 
 Converter.prototype.from = function (from) {
     if (this.destination)
@@ -23,7 +21,7 @@ Converter.prototype.from = function (from) {
     }
 
     return this;
-}
+};
 
 Converter.prototype.to = function (to) {
     if (!this.origin)
@@ -48,11 +46,11 @@ Converter.prototype.to = function (to) {
 
 
     if (this.origin.unit.anchor_shift) {
-        result -= this.origin.unit.anchor_shift
+        result -= this.origin.unit.anchor_shift;
     }
 
     if (this.origin.system != this.destination.system) {
-        result = this.definitions[this.origin.system].transform(result)
+        result = this.definitions[this.origin.system].transform(result);
     }
 
     if (this.destination.unit.anchor_shift !== undefined) {
@@ -60,11 +58,11 @@ Converter.prototype.to = function (to) {
     }
 
     return result / this.destination.unit.to_anchor;
-}
+};
 
 Converter.prototype.toBest = function (options) {
     return;
-}
+};
 
 Converter.prototype.getUnit = function (abbr) {
     let found;
@@ -77,32 +75,34 @@ Converter.prototype.getUnit = function (abbr) {
                     abbr: abbr,
                     system: system,
                     unit: unit,
-                }
-            })
+                };
+            });
 
     });
 
     return found !== undefined ? found : false;
-}
+};
 
 Converter.prototype.list = function (measure) {
     return;
-}
+};
 
 Converter.prototype.throwUnsupportedUnitError = function (what) {
     throw new Error('Unsupported unit ' + what);
-}
+};
 
 Converter.prototype.possibilities = function (measure) {
     return;
-}
+};
 
 Converter.prototype.measures = function () {
     return;
 };
 
-export default function converter(definitions) {
+function converter(definitions) {
     return (val) => {
         return new Converter(val, definitions)
     }
 }
+
+export default converter;

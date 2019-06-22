@@ -2,16 +2,25 @@
   "name": "units-converter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel --presets es2015 -d lib/ src"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest --coverage",
+    "pretest": "agadoo"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
-  }
+    "@babel/preset-env": "^7.4.5",
+    "agadoo": "^1.0.1",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "rollup": "^1.0.0"
+  },
+  "files": [
+    "dist"
+  ]
 }

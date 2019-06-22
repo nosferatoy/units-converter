@@ -1,0 +1,16 @@
+build site:
+  image: node:latest
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+
+unit test:
+  image: node:latest
+  stage: test
+  script:
+    - npm install
+    - npm run unit

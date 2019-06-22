@@ -216,6 +216,8 @@ const volume = {
             }
         ]
     }
-}
+};
 
-export default utils(volume);
+var volume$1 = utils(volume);
+
+export default volume$1;

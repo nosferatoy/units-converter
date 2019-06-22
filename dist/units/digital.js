@@ -76,6 +76,8 @@ const digitals = {
       , to_anchor: 1099511627776
     }
   }
-}
+};
 
-export default utils(digitals);
+var digital = utils(digitals);
+
+export default digital;

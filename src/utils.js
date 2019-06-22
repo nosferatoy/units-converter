@@ -1,108 +1,104 @@
-"use strict";
+'use strict'
 
 const Converter = function (numerator, definitions) {
-    this.definitions = definitions;
+  this.definitions = definitions
 
-    this.val = numerator;
+  this.val = numerator
 
-    //TODO check if the deonominator is needed
-    // if (denominator)
-    //     this.val = numerator / denominator;
-    // else
-    //     this.val = numerator;
+  // TODO check if the deonominator is needed
+  // if (denominator)
+  //     this.val = numerator / denominator;
+  // else
+  //     this.val = numerator;
 }
 
 Converter.prototype.from = function (from) {
-    if (this.destination)
-        throw new Error('.from must be called before .to');
+  if (this.destination) { throw new Error('.from must be called before .to') }
 
-    this.origin = this.getUnit(from);
+  this.origin = this.getUnit(from)
 
-    if (!this.origin) {
-        this.throwUnsupportedUnitError(from);
-    }
+  if (!this.origin) {
+    this.throwUnsupportedUnitError(from)
+  }
 
-    return this;
+  return this
 }
 
 Converter.prototype.to = function (to) {
-    if (!this.origin)
-        throw new Error('.to must be called after .from');
+  if (!this.origin) { throw new Error('.to must be called after .from') }
 
-    this.destination = this.getUnit(to);
+  this.destination = this.getUnit(to)
 
-    // console.log(" origin : ", this.origin);
-    // console.log(" destination : ", this.destination)
+  // console.log(" origin : ", this.origin);
+  // console.log(" destination : ", this.destination)
 
-    let result;
+  let result
 
-    if (!this.destination) {
-        this.throwUnsupportedUnitError(to);
-    }
+  if (!this.destination) {
+    this.throwUnsupportedUnitError(to)
+  }
 
-    if (this.origin.abbr === this.destination.abbr) {
-        return this.val;
-    }
+  if (this.origin.abbr === this.destination.abbr) {
+    return this.val
+  }
 
-    result = this.val * this.origin.unit.to_anchor;
+  result = this.val * this.origin.unit.to_anchor
 
+  if (this.origin.unit.anchor_shift) {
+    result -= this.origin.unit.anchor_shift
+  }
 
-    if (this.origin.unit.anchor_shift) {
-        result -= this.origin.unit.anchor_shift
-    }
+  if (this.origin.system !== this.destination.system) {
+    result = this.definitions[this.origin.system].transform(result)
+  }
 
-    if (this.origin.system != this.destination.system) {
-        result = this.definitions[this.origin.system].transform(result)
-    }
+  if (this.destination.unit.anchor_shift !== undefined) {
+    result += this.destination.unit.anchor_shift
+  }
 
-    if (this.destination.unit.anchor_shift !== undefined) {
-        result += this.destination.unit.anchor_shift;
-    }
-
-    return result / this.destination.unit.to_anchor;
+  return result / this.destination.unit.to_anchor
 }
 
 Converter.prototype.toBest = function (options) {
-    return;
+
 }
 
 Converter.prototype.getUnit = function (abbr) {
-    let found;
+  let found
 
-    Object.keys(this.definitions).forEach(system => {
-        this.definitions[system].units
-            .filter(unit => { return unit.alias === abbr })
-            .forEach(unit => {
-                found = {
-                    abbr: abbr,
-                    system: system,
-                    unit: unit,
-                }
-            })
+  Object.keys(this.definitions).forEach(system => {
+    this.definitions[system].units
+      .filter(unit => { return unit.alias === abbr })
+      .forEach(unit => {
+        found = {
+          abbr: abbr,
+          system: system,
+          unit: unit
+        }
+      })
+  })
 
-    });
-
-    return found !== undefined ? found : false;
+  return found !== undefined ? found : false
 }
 
 Converter.prototype.list = function (measure) {
-    return;
+
 }
 
 Converter.prototype.throwUnsupportedUnitError = function (what) {
-    throw new Error('Unsupported unit ' + what);
+  throw new Error('Unsupported unit ' + what)
 }
 
 Converter.prototype.possibilities = function (measure) {
-    return;
+
 }
 
 Converter.prototype.measures = function () {
-    return;
-};
 
-export default function converter(definitions) {
-    return (val) => {
-        return new Converter(val, definitions)
-    }
+}
+
+export default function converter (definitions) {
+  return (val) => {
+    return new Converter(val, definitions)
+  }
 }

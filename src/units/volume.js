@@ -6,217 +6,188 @@ const volume = {
   metric: {
     baseUnit: 'l',
     transform: (val) => { return RATIO * val },
-    units: [
-      {
-        alias: 'mm3',
-        name: {
-          singular: 'Cubic Millimeter',
-          plural: 'Cubic Millimeters'
-        },
-        to_anchor: 1 / 1000000
+    mm3: {
+      name: {
+        singular: 'Cubic Millimeter',
+        plural: 'Cubic Millimeters'
       },
-      {
-        alias: 'cm3',
-        name: {
-          singular: 'Cubic Centimeter',
-          plural: 'Cubic Centimeters'
-        },
-        to_anchor: 1 / 1000
+      to_anchor: 1 / 1000000
+    },
+    cm3: {
+      name: {
+        singular: 'Cubic Centimeter',
+        plural: 'Cubic Centimeters'
       },
-      {
-        alias: 'ml',
-        name: {
-          singular: 'Millilitre',
-          plural: 'Millilitres'
-        },
-        to_anchor: 1 / 1000
+      to_anchor: 1 / 1000
+    },
+    ml: {
+      name: {
+        singular: 'Millilitre',
+        plural: 'Millilitres'
       },
-      {
-        alias: 'cl',
-        name: {
-          singular: 'Centilitre',
-          plural: 'Centilitres'
-        },
-        to_anchor: 1 / 100
+      to_anchor: 1 / 1000
+    },
+    cl: {
+      name: {
+        singular: 'Centilitre',
+        plural: 'Centilitres'
       },
-      {
-        alias: 'dl',
-        name: {
-          singular: 'Decilitre',
-          plural: 'Decilitres'
-        },
-        to_anchor: 1 / 10
+      to_anchor: 1 / 100
+    },
+    dl: {
+      name: {
+        singular: 'Decilitre',
+        plural: 'Decilitres'
       },
-      {
-        alias: 'l',
-        name: {
-          singular: 'Litre',
-          plural: 'Litres'
-        },
-        to_anchor: 1
+      to_anchor: 1 / 10
+    },
+    l: {
+      name: {
+        singular: 'Litre',
+        plural: 'Litres'
       },
-      {
-        alias: 'kl',
-        name: {
-          singular: 'Kilolitre',
-          plural: 'Kilolitres'
-        },
-        to_anchor: 1000
+      to_anchor: 1
+    },
+    kl: {
+      name: {
+        singular: 'Kilolitre',
+        plural: 'Kilolitres'
       },
-      {
-        alias: 'm3',
-        name: {
-          singular: 'Cubic meter',
-          plural: 'Cubic meters'
-        },
-        to_anchor: 1000
+      to_anchor: 1000
+    },
+    m3: {
+      name: {
+        singular: 'Cubic meter',
+        plural: 'Cubic meters'
       },
-      {
-        alias: 'km3',
-        name: {
-          singular: 'Cubic kilometer',
-          plural: 'Cubic kilometers'
-        },
-        to_anchor: 1000000000000
+      to_anchor: 1000
+    },
+    km3: {
+      name: {
+        singular: 'Cubic kilometer',
+        plural: 'Cubic kilometers'
       },
+      to_anchor: 1000000000000
+    },
 
-      // Swedish units
-      {
-        alias: 'krm',
-        name: {
-          singular: 'Matsked',
-          plural: 'Matskedar'
-        },
-        to_anchor: 1 / 1000
+    // Swedish units
+    krm: {
+      name: {
+        singular: 'Matsked',
+        plural: 'Matskedar'
       },
-      {
-        alias: 'tsk',
-        name: {
-          singular: 'Tesked',
-          plural: 'Teskedar'
-        },
-        to_anchor: 5 / 1000
+      to_anchor: 1 / 1000
+    },
+    tsk: {
+      name: {
+        singular: 'Tesked',
+        plural: 'Teskedar'
       },
-      {
-        alias: 'msk',
-        name: {
-          singular: 'Matsked',
-          plural: 'Matskedar'
-        },
-        to_anchor: 15 / 1000
+      to_anchor: 5 / 1000
+    },
+    msk: {
+      name: {
+        singular: 'Matsked',
+        plural: 'Matskedar'
       },
-      {
-        alias: 'kkp',
-        name: {
-          singular: 'Kaffekopp',
-          plural: 'Kaffekoppar'
-        },
-        to_anchor: 150 / 1000
+      to_anchor: 15 / 1000
+    },
+    kkp: {
+      name: {
+        singular: 'Kaffekopp',
+        plural: 'Kaffekoppar'
       },
-      {
-        alias: 'glas',
-        name: {
-          singular: 'Glas',
-          plural: 'Glas'
-        },
-        to_anchor: 200 / 1000
+      to_anchor: 150 / 1000
+    },
+    glas: {
+      name: {
+        singular: 'Glas',
+        plural: 'Glas'
       },
-      {
-        alias: 'kanna',
-        name: {
-          singular: 'Kanna',
-          plural: 'Kannor'
-        },
-        to_anchor: 2.617
-      }
-    ]
+      to_anchor: 200 / 1000
+    },
+    kanna: {
+      name: {
+        singular: 'Kanna',
+        plural: 'Kannor'
+      },
+      to_anchor: 2.617
+    }
   },
 
   imperial: {
     baseUnit: 'fl-oz',
     transform: (val) => { return val * 1 / RATIO },
-    units: [
-      {
-        alias: 'tsp',
-        name: {
-          singular: 'Teaspoon',
-          plural: 'Teaspoons'
-        },
-        to_anchor: 1 / 6
+    tsp: {
+      name: {
+        singular: 'Teaspoon',
+        plural: 'Teaspoons'
       },
-      {
-        alias: 'Tbs',
-        name: {
-          singular: 'Tablespoon',
-          plural: 'Tablespoons'
-        },
-        to_anchor: 1 / 2
+      to_anchor: 1 / 6
+    },
+    Tbs: {
+      name: {
+        singular: 'Tablespoon',
+        plural: 'Tablespoons'
       },
-      {
-        alias: 'in3',
-        name: {
-          singular: 'Cubic inch',
-          plural: 'Cubic inches'
-        },
-        to_anchor: 0.55411
+      to_anchor: 1 / 2
+    },
+    in3: {
+      name: {
+        singular: 'Cubic inch',
+        plural: 'Cubic inches'
       },
-      {
-        alias: 'fl-oz',
-        name: {
-          singular: 'Fluid Ounce',
-          plural: 'Fluid Ounces'
-        },
-        to_anchor: 1
+      to_anchor: 0.55411
+    },
+    'fl-oz': {
+      name: {
+        singular: 'Fluid Ounce',
+        plural: 'Fluid Ounces'
       },
-      {
-        alias: 'cup',
-        name: {
-          singular: 'Cup',
-          plural: 'Cups'
-        },
-        to_anchor: 8
+      to_anchor: 1
+    },
+    cap: {
+      name: {
+        singular: 'Cup',
+        plural: 'Cups'
       },
-      {
-        alias: 'pnt',
-        name: {
-          singular: 'Pint',
-          plural: 'Pints'
-        },
-        to_anchor: 16
+      to_anchor: 8
+    },
+    pnt: {
+      name: {
+        singular: 'Pint',
+        plural: 'Pints'
       },
-      {
-        alias: 'qt',
-        name: {
-          singular: 'Quart',
-          plural: 'Quarts'
-        },
-        to_anchor: 32
+      to_anchor: 16
+    },
+    qt: {
+      name: {
+        singular: 'Quart',
+        plural: 'Quarts'
       },
-      {
-        alias: 'gal',
-        name: {
-          singular: 'Gallon',
-          plural: 'Gallons'
-        },
-        to_anchor: 128
+      to_anchor: 32
+    },
+    gal: {
+      name: {
+        singular: 'Gallon',
+        plural: 'Gallons'
       },
-      {
-        alias: 'ft3',
-        name: {
-          singular: 'Cubic foot',
-          plural: 'Cubic feet'
-        },
-        to_anchor: 957.506
+      to_anchor: 128
+    },
+    ft3: {
+      name: {
+        singular: 'Cubic foot',
+        plural: 'Cubic feet'
       },
-      {
-        alias: 'yd3',
-        name: {
-          singular: 'Cubic yard',
-          plural: 'Cubic yards'
-        },
-        to_anchor: 25852.7
-      }
-    ]
+      to_anchor: 957.506
+    },
+    yd3: {
+      name: {
+        singular: 'Cubic yard',
+        plural: 'Cubic yards'
+      },
+      to_anchor: 25852.7
+    }
   }
 }
 

@@ -50,7 +50,24 @@ Converter.prototype.to = function (to) {
 }
 
 Converter.prototype.toBest = function (options) {
+  if (!this.origin)
+    throw new Error('.toBest must be called after .from');
 
+  options = Object.assign({
+    exclude: [],
+    cutOffNumber: 1,
+  }, options)
+
+  return this.list()
+    .filter(item => !options.exclude.includes(item.abbr) && this.describe(item.abbr).system === this.origin.system)
+    .reduce((acc, item) => {
+      const result = this.to(item.abbr);
+      if (!acc || (result >= options.cutOffNumber && result < acc.val)) {
+        return acc = Object.assign({val: result}, item);
+      } else {
+        return acc
+      }
+    }, undefined)
 }
 
 Converter.prototype.getUnit = function (abbr) {
@@ -68,23 +85,35 @@ Converter.prototype.getUnit = function (abbr) {
   return Array.isArray(found) ? found[0] : undefined
 }
 
-Converter.prototype.list = function (measure) {
-
+Converter.prototype.list = function () {
+  return this.possibilities().map(abbr => this.describe(abbr))
 }
 
 Converter.prototype.throwUnsupportedUnitError = function (what) {
   throw new Error('Unsupported unit ' + what)
 }
 
-Converter.prototype.possibilities = function (measure) {
+Converter.prototype.describe = function (abbr) {
+  if (!abbr) { throw new Error('You must select a unit') }
 
+  const unit = this.getUnit(abbr);
+
+  return {
+    abbr: unit.abbr,
+    system: unit.system,
+    singular: unit.unit.name.singular,
+    plural: unit.unit.name.plural
+  }
 }
 
-Converter.prototype.measures = function () {
-
+Converter.prototype.possibilities = function () {
+  return Object.keys(this.definitions)
+    .map(systemName => {
+      return Object.keys(this.definitions[systemName]).splice(2)
+    }).flat()
 }
 
-export default function converter (definitions) {
+export default function converter(definitions) {
   return (val) => {
     return new Converter(val, definitions)
   }

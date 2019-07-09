@@ -5,7 +5,7 @@ const RATIO = 8;
 const digitals = {
   bits: {
     baseUnit: 'b',
-    transform: (val) => { return RATIO * val },
+    transform: (val) => { return val * 1 / RATIO },
     b: {
       name: {
         singular: 'Bit',
@@ -45,7 +45,7 @@ const digitals = {
 
   bytes: {
     baseUnit: 'B',
-    transform: (val) => { return val * 1 / RATIO },
+    transform: (val) => { return val * RATIO },
     B: {
       name: {
         singular: 'Byte',

@@ -9,7 +9,7 @@ Converter.prototype.from = function (from) {
   if (this.destination) { throw new Error('.from must be called before .to') }
 
   this.origin = this.getUnit(from)
-
+console.log("this.origin : ", this.origin)
   if (!this.origin) {
     this.throwUnsupportedUnitError(from)
   }
@@ -29,7 +29,7 @@ Converter.prototype.to = function (to) {
   }
 
   if (this.origin.abbr === this.destination.abbr) {
-    return this.val
+    return Object.assign({ value:this.val }, this.describe(this.destination.abbr));
   }
 
   result = this.val * this.origin.unit.to_anchor
@@ -46,7 +46,7 @@ Converter.prototype.to = function (to) {
     result += this.destination.unit.anchor_shift
   }
 
-  return result / this.destination.unit.to_anchor
+  return Object.assign({ value:  result / this.destination.unit.to_anchor }, this.describe(this.destination.abbr));
 }
 
 Converter.prototype.toBest = function (options) {
@@ -62,8 +62,8 @@ Converter.prototype.toBest = function (options) {
     .filter(item => !options.exclude.includes(item.abbr) && this.describe(item.abbr).system === this.origin.system)
     .reduce((acc, item) => {
       const result = this.to(item.abbr);
-      if (!acc || (result >= options.cutOffNumber && result < acc.val)) {
-        return acc = Object.assign({val: result}, item);
+      if (!acc || (result.value >= options.cutOffNumber && result.value < acc.val)) {
+        return acc = result;
       } else {
         return acc
       }
@@ -99,7 +99,7 @@ Converter.prototype.describe = function (abbr) {
   const unit = this.getUnit(abbr);
 
   return {
-    abbr: unit.abbr,
+    unit: unit.abbr,
     system: unit.system,
     singular: unit.unit.name.singular,
     plural: unit.unit.name.plural

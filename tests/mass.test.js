@@ -1,69 +1,55 @@
-// import { mass } from '../src/index.js'
+import { mass } from '../src/index.js'
 
-// const ACCURACY = 1 / 1000
-// const percentError = (expected, actual) => {
-//     return Math.abs((expected - actual) / actual)
-// }
+const ACCURACY = 1 / 1000
+const percentError = (expected, actual) => {
+    return Math.abs((expected - actual) / actual)
+}
 
-// tests['lb to lb'] = function () {
-//   assert.strictEqual( convert(1).from('lb').to('lb') , 1);
-// };
+test('lb to lb', () => {
+    expect(mass(1).from('lb').to('lb').value).toEqual(1)
+})
 
-// tests['lb to oz'] = function () {
-//   assert.strictEqual( convert(1).from('lb').to('oz') , 16);
-// };
+test('lb to oz', () => {
+    expect(mass(1).from('lb').to('oz').value).toEqual(16)
+})
 
-// tests['oz to lb'] = function () {
-//   assert.strictEqual( convert(1).from('oz').to('lb') , 1/16);
-// };
+test('oz to lb', () => {
+    expect(mass(1).from('oz').to('lb').value).toEqual(1/16)
+})
 
-// tests['oz to oz'] = function () {
-//   assert.strictEqual( convert(6).from('oz').to('oz') , 6);
-// };
+test('oz to oz', () => {
+    expect(mass(6).from('oz').to('oz').value).toEqual(6)
+})
 
-// tests['kg to kg'] = function () {
-//   assert.strictEqual( convert(1).from('kg').to('kg') , 1);
-// };
+test('kg to kg', () => {
+    expect(mass(1).from('kg').to('kg').value).toEqual(1)
+})
 
-// tests['kg to g'] = function () {
-//   assert.strictEqual( convert(1).from('kg').to('g') , 1000);
-// };
+test('kg to g', () => {
+    expect(mass(1).from('kg').to('g').value).toEqual(1000)
+})
 
-// tests['g to kg'] = function () {
-//   assert.strictEqual( convert(1).from('g').to('kg') , 1/1000);
-// };
+test('g to kg', () => {
+    expect(mass(1).from('g').to('kg').value).toEqual(1/1000)
+})
 
-// tests['g to g'] = function () {
-//   assert.strictEqual( convert(100).from('g').to('g') , 100);
-// };
+test('g to g', () => {
+    expect(mass(100).from('g').to('g').value).toEqual(100)
+})
 
-// // When converting between systems, expect < 0.1% error
-// tests['kg to lb'] = function () {
-//   var expected = 0.453592
-//     , actual = convert(1).from('lb').to('kg');
-//   assert.ok( percentError(expected, actual) < ACCURACY
-//     , 'Expected: ' + expected +', Actual: ' + actual);
-// };
+// When converting between systems, expect < 0.1% error
+test('lb to kg', () => {
+    expect(percentError(0.453592, mass(1).from('lb').to('kg').value)).toBeLessThanOrEqual(ACCURACY)
+})
 
-// tests['g to lb'] = function () {
-//   var expected = 0.00220462
-//     , actual = convert(1).from('g').to('lb');
-//   assert.ok( percentError(expected, actual) < ACCURACY
-//     , 'Expected: ' + expected +', Actual: ' + actual);
-// };
+test('g to lb', () => {
+    expect(percentError(0.00220462, mass(1).from('g').to('lb').value)).toBeLessThanOrEqual(ACCURACY)
+})
 
-// tests['lb to g'] = function () {
-//   var expected = 1360.78
-//     , actual = convert(3).from('lb').to('g');
-//   assert.ok( percentError(expected, actual) < ACCURACY
-//     , 'Expected: ' + expected +', Actual: ' + actual);
-// };
+test('lb to g', () => {
+    expect(percentError(1360.78, mass(3).from('lb').to('g').value)).toBeLessThanOrEqual(ACCURACY)
+})
 
-// tests['g to lb'] = function () {
-//   var expected = 3
-//     , actual = convert(1360.78).from('g').to('lb');
-//   assert.ok( percentError(expected, actual) < ACCURACY
-//     , 'Expected: ' + expected +', Actual: ' + actual);
-// };
-
-// module.exports = tests;
+test('g to lb', () => {
+    expect(percentError(3, mass(1360.78).from('g').to('lb').value)).toBeLessThanOrEqual(ACCURACY)
+})

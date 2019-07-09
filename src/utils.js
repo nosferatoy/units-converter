@@ -107,10 +107,10 @@ Converter.prototype.describe = function (abbr) {
 }
 
 Converter.prototype.possibilities = function () {
-  return Object.keys(this.definitions)
+  return Array.prototype.concat(...Object.keys(this.definitions)
     .map(systemName => {
       return Object.keys(this.definitions[systemName]).splice(2)
-    }).flat()
+    }))
 }
 
 export default function converter(definitions) {

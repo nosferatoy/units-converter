@@ -146,7 +146,7 @@ const volume = {
       },
       to_anchor: 1
     },
-    cap: {
+    cup: {
       name: {
         singular: 'Cup',
         plural: 'Cups'

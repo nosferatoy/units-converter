@@ -1,7 +1,7 @@
-import utils from '../utils.js'
+import utils from '../utils.js';
 
-const RATIO = 1
-const PI = 3.141592653589793
+const RATIO = 1;
+const PI = 3.141592653589793;
 
 const frequency = {
   metric: {
@@ -71,6 +71,8 @@ const frequency = {
       , to_anchor: 1 / (PI * 2)
     }
   }
-}
+};
 
-export default utils(frequency)
+var frequency$1 = utils(frequency);
+
+export default frequency$1;

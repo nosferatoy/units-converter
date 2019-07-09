@@ -9,7 +9,7 @@ Converter.prototype.from = function (from) {
   if (this.destination) { throw new Error('.from must be called before .to') }
 
   this.origin = this.getUnit(from)
-console.log("this.origin : ", this.origin)
+
   if (!this.origin) {
     this.throwUnsupportedUnitError(from)
   }
@@ -59,10 +59,10 @@ Converter.prototype.toBest = function (options) {
   }, options)
 
   return this.list()
-    .filter(item => !options.exclude.includes(item.abbr) && this.describe(item.abbr).system === this.origin.system)
+    .filter(item => !options.exclude.includes(item.unit) && this.describe(item.unit).system === this.origin.system)
     .reduce((acc, item) => {
-      const result = this.to(item.abbr);
-      if (!acc || (result.value >= options.cutOffNumber && result.value < acc.val)) {
+      const result = this.to(item.unit);
+      if (!acc || (result.value >= options.cutOffNumber && result.value < acc.value)) {
         return acc = result;
       } else {
         return acc

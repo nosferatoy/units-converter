@@ -57,10 +57,10 @@ Converter.prototype.toBest = function (options) {
   }, options);
 
   return this.list()
-    .filter(item => !options.exclude.includes(item.abbr) && this.describe(item.abbr).system === this.origin.system)
+    .filter(item => !options.exclude.includes(item.unit) && this.describe(item.unit).system === this.origin.system)
     .reduce((acc, item) => {
-      const result = this.to(item.abbr);
-      if (!acc || (result.value >= options.cutOffNumber && result.value < acc.val)) {
+      const result = this.to(item.unit);
+      if (!acc || (result.value >= options.cutOffNumber && result.value < acc.value)) {
         return acc = result;
       } else {
         return acc
@@ -97,7 +97,7 @@ Converter.prototype.describe = function (abbr) {
   const unit = this.getUnit(abbr);
 
   return {
-    abbr: unit.abbr,
+    unit: unit.abbr,
     system: unit.system,
     singular: unit.unit.name.singular,
     plural: unit.unit.name.plural

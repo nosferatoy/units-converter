@@ -1,6 +1,6 @@
-import utils from '../utils.js'
+import utils from '../utils.js';
 
-const RATIO = 1
+const RATIO = 1;
 
 const charge = {
   metric: {
@@ -42,8 +42,8 @@ const charge = {
       , to_anchor: 1e-12
     }
   }
-}
+};
 
-export default utils(charge)
+var charge$1 = utils(charge);
 
-
+export default charge$1;

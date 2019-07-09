@@ -1,7 +1,7 @@
-import utils from '../utils.js'
+import utils from '../utils.js';
 
-const RATIO = 1
-const PI = 3.141592653589793
+const RATIO = 1;
+const PI = 3.141592653589793;
 
 const angle = {
   metric: {
@@ -43,7 +43,8 @@ const angle = {
       , to_anchor: 1 / 3600
     }
   }
-}
+};
 
-export default utils(angle)
+var angle$1 = utils(angle);
 
+export default angle$1;

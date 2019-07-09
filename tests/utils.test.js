@@ -5,351 +5,278 @@ describe('Test to best', () => {
         expect(converter.length(1200).from('mm').toBest()).toEqual({
             value: 1.2
             , unit: 'm'
+            , system: 'metric'
             , singular: 'Meter'
             , plural: 'Meters'
         })
     })
 
-    tests['excludes measurements'] = function () {
-        var actual = convert(1200000).from('mm').toBest({ exclude: ['km', 'm'] })
-            , expected = {
-                val: 120000
-                , unit: 'cm'
-                , singular: 'Centimeter'
-                , plural: 'Centimeters'
-            };
+    test('best mm with excludes measurements km and m', () => {
+        expect(converter.length(1200000).from('mm').toBest({ exclude: ['km', 'm'] })).toEqual({
+            value: 120000
+            , unit: 'cm'
+            , system: 'metric'
+            , singular: 'Centimeter'
+            , plural: 'Centimeters'
+        })
+    })
 
-        assert.deepEqual(actual, expected);
-    }
+    test('best mm with excludes measurements km and m', () => {
+        expect(converter.length(1200000).from('mm').toBest({ exclude: ['km', 'm'] })).toEqual({
+            value: 120000
+            , unit: 'cm'
+            , system: 'metric'
+            , singular: 'Centimeter'
+            , plural: 'Centimeters'
+        })
+    })
 
-    tests['does not break when excluding from measurement'] = function () {
-        var actual = convert(10).from('km').toBest({ exclude: ['km'] })
-            , expected = {
-                val: 10000
-                , unit: 'm'
-                , singular: 'Meter'
-                , plural: 'Meters'
-            };
 
-        assert.deepEqual(actual, expected);
-    }
+    test('best km excluding self', () => {
+        expect(converter.length(10).from('km').toBest({ exclude: ['km'] })).toEqual({
+            value: 10000
+            , unit: 'm'
+            , system: 'metric'
+            , singular: 'Meter'
+            , plural: 'Meters'
+        })
+    })
 
-    tests['if all measurements are excluded return from'] = function () {
-        var actual = convert(10).from('km').toBest({ exclude: ['mm, cm, m, km'] })
-            , expected = {
-                val: 10
-                , unit: 'km'
-                , singular: 'Kilometer'
-                , plural: 'Kilometers'
-            };
+    test('if all measurements are excluded return self', () => {
+        expect(converter.length(10).from('km').toBest({ exclude: ['mm, cm, m, km'] })).toEqual({
+            value: 10
+            , unit: 'km'
+            , system: 'metric'
+            , singular: 'Kilometer'
+            , plural: 'Kilometers'
+        })
+    })
 
-        assert.deepEqual(actual, expected);
-    }
+    test('pre-cut off numbe', () => {
+        expect(converter.length(9000).from('mm').toBest({ cutOffNumber: 10 })).toEqual({
+            value: 900
+            , unit: 'cm'
+            , system: 'metric'
+            , singular: 'Centimeter'
+            , plural: 'Centimeters'
+        })
+    })
 
-    tests['pre-cut off number'] = function () {
-        var actual = convert(9000).from('mm').toBest({ cutOffNumber: 10 })
-            , expected = {
-                val: 900
-                , unit: 'cm'
-                , singular: 'Centimeter'
-                , plural: 'Centimeters'
-            };
-
-        assert.deepEqual(actual, expected);
-    }
-
-    tests['post-cut off number'] = function () {
-        var actual = convert(10000).from('mm').toBest({ cutOffNumber: 10 })
-            , expected = {
-                val: 10
-                , unit: 'm'
-                , singular: 'Meter'
-                , plural: 'Meters'
-            };
-
-        assert.deepEqual(actual, expected);
-    }
+    test('post-cut off number', () => {
+        expect(converter.length(10000).from('mm').toBest({ cutOffNumber: 10 })).toEqual({
+            value: 10
+            , unit: 'm'
+            , system: 'metric'
+            , singular: 'Meter'
+            , plural: 'Meters'
+        })
+    })
 })
 
-test('Test to describe', () => {
+describe('Test to describe', () => {
+    test('get kg', () => {
+        expect(converter.mass().describe('kg')).toEqual({
+            unit: 'kg'
+            , system: 'metric'
+            , singular: 'Kilogram'
+            , plural: 'Kilograms'
+        })
+    })
 
-    tests['get kg'] = function () {
-        var actual = convert().describe('kg')
-            , expected = {
-                abbr: 'kg'
-                , measure: 'mass'
-                , system: 'metric'
-                , singular: 'Kilogram'
-                , plural: 'Kilograms'
-            };
-
-        assert.deepEqual(actual, expected);
-    };
-
-    tests['get ac'] = function () {
-        var actual = convert().describe('ac')
-            , expected = {
-                abbr: 'ac'
-                , measure: 'area'
-                , system: 'imperial'
-                , singular: 'Acre'
-                , plural: 'Acres'
-            };
-
-        assert.deepEqual(actual, expected);
-    };
-
+    test('get ac', () => {
+        expect(converter.area().describe('ac')).toEqual({
+            unit: 'ac'
+            , system: 'imperial'
+            , singular: 'Acre'
+            , plural: 'Acres'
+        })
+    })
 })
 
-test('Test the error handling', () => {
+describe('Test the error handling', () => {
+    test('ltr to kg throws', () => {
+        expect(() => { converter.volume(2).from('ltr').to('kg') }).toThrow(Error);
+    });
 
-    tests['ltr to kg throws'] = function () {
-        assert.throws(function () {
-            convert(2).from('ltr').to('kg');
-        });
-    };
+    test('fl-oz to oz throws', () => {
+        expect(() => { converter.volume(2).from('fl-oz').to('oz') }).toThrow(Error);
+    });
 
-    tests['fl-oz to oz throws'] = function () {
-        assert.throws(function () {
-            convert(4).from('fl-oz').to('oz');
-        });
-    };
+    test('kg to fl-oz throws', () => {
+        expect(() => { converter.mass(2).from('kg').to('fl-oz') }).toThrow(Error);
+    });
 
-    tests['kg to fl-oz throws'] = function () {
-        assert.throws(function () {
-            convert(4).from('kg').to('fl-oz');
-        });
-    };
+    test('kg to ft throws', () => {
+        expect(() => { converter.mass(2).from('kg').to('ft') }).toThrow(Error);
+    });
 
-    tests['kg to ft throws'] = function () {
-        assert.throws(function () {
-            convert(4).from('kg').to('fl-oz');
-        });
-    };
+    test('kg to nonexistant unit throws', () => {
+        expect(() => { converter.mass(2).from('kg').to('garbage') }).toThrow(Error);
+    });
 
-    tests['kg to nonexistant unit throws'] = function () {
-        assert.throws(function () {
-            convert(4).from('kg').to('garbage');
-        });
-    };
+    test('nonexistant unit to kg throws', () => {
+        expect(() => { converter.mass(2).from('nonexistant unit') }).toThrow(Error);
+    });
 
-    tests['nonexistant unit to kg throws'] = function () {
-        assert.throws(function () {
-            convert(4).from('nonexistant unit');
-        });
-    };
-
-    tests['.to before .from throws'] = function () {
-        assert.throws(function () {
-            convert(4).to('kg').from('fl-oz');
-        });
-    };
+    test('.to before .from throws', () => {
+        expect(() => { converter.mass(2).to('kg').to('fl-oz') }).toThrow(Error);
+    });
 })
 
-test('Test the list', () => {
-
-
-    tests['list'] = function () {
-        var list = convert().list()
-            , firstItem = list[0];
-
-        assert(list.length > 0);
-        assert(firstItem.hasOwnProperty("abbr"));
-        assert(typeof firstItem.abbr === "string");
-        assert(firstItem.hasOwnProperty("measure"));
-        assert(typeof firstItem.measure === "string");
-        assert(firstItem.hasOwnProperty("system"));
-        assert(typeof firstItem.system === "string");
-        assert(firstItem.hasOwnProperty("singular"));
-        assert(typeof firstItem.singular === "string");
-        assert(firstItem.hasOwnProperty("plural"));
-        assert(typeof firstItem.plural === "string");
-    };
-
-    tests['list by measure'] = function () {
-        var full = convert().list()
-            , measures = convert().measures();
-
-        measures.map(function (measure) {
-            var list = convert().list(measure);
-
-            assert(list.length > 0);
-            assert(list.length < full.length);
-        });
-    };
-
+describe('Test the list', () => {
+    test('list', () => {
+        let list = converter.mass().list();
+        let firstItem = list[0];
+        expect(firstItem).toHaveProperty('unit')
+        expect(typeof firstItem.unit).toBe('string');
+        expect(firstItem).toHaveProperty("singular");
+        expect(typeof firstItem.singular).toBe('string');
+        expect(firstItem).toHaveProperty("singular");
+        expect(typeof firstItem.singular).toBe('string');
+        expect(firstItem).toHaveProperty("plural");
+        expect(typeof firstItem.plural).toBe('string');
+    })
 })
 
-test('Test the possibilities', () => {
+describe('Test the possibilities', () => {
 
+    test('l possibilities', () => {
+        const expected = ['mm3', 'cm3', 'ml', 'cl', 'dl', 'l', 'kl', 'm3', 'km3', 'krm', 'tsk', 'msk', 'kkp', 'glas', 'kanna', 'tsp', 'Tbs', 'in3', 'fl-oz', 'cup', 'pnt', 'qt', 'gal', 'ft3', 'yd3'];
+        expect(converter.volume().from('l').possibilities()).toEqual(expected)
+    });
 
-    tests['l possibilities'] = function () {
-        var actual = convert().from('l').possibilities()
-            , expected = ['mm3', 'cm3', 'ml', 'cl', 'dl', 'l', 'kl', 'm3', 'km3', 'krm', 'tsk', 'msk', 'kkp', 'glas', 'kanna', 'tsp', 'Tbs', 'in3', 'fl-oz', 'cup', 'pnt', 'qt', 'gal', 'ft3', 'yd3'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('kg possibilities', () => {
+        const expected = ['mcg', 'mg', 'g', 'kg', 'mt', 'oz', 'lb', 't'];
+        expect(converter.mass().from('kg').possibilities()).toEqual(expected)
+    });
 
-    tests['kg possibilities'] = function () {
-        var actual = convert().from('kg').possibilities()
-            , expected = ['mcg', 'mg', 'g', 'kg', 'mt', 'oz', 'lb', 't'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('m possibilities', () => {
+        const expected = ['mm', 'cm', 'm', 'km', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi'];
+        expect(converter.length().from('m').possibilities()).toEqual(expected)
+    });
 
-    tests['m possibilities'] = function () {
-        var actual = convert().from('m').possibilities()
-            , expected = ['mm', 'cm', 'm', 'km', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('each possibilities', () => {
+        const expected = ['ea', 'dz'];
+        expect(converter.each().possibilities()).toEqual(expected)
+    });
 
-    tests['each possibilities'] = function () {
-        var actual = convert().possibilities('each')
-            , expected = ['ea', 'dz'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('mass possibilities', () => {
+        const expected = ['mcg', 'mg', 'g', 'kg', 'mt', 'oz', 'lb', 't'];
+        expect(converter.mass().possibilities()).toEqual(expected)
+    });
 
-    tests['mass possibilities'] = function () {
-        var actual = convert().possibilities('mass')
-            , expected = ['mcg', 'mg', 'g', 'kg', 'mt', 'oz', 'lb', 't'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('volume possibilities', () => {
+        const expected = ['mm3', 'cm3', 'ml', 'cl', 'dl', 'l', 'kl', 'm3', 'km3', 'krm', 'tsk', 'msk', 'kkp', 'glas', 'kanna', 'tsp', 'Tbs', 'in3', 'fl-oz', 'cup', 'pnt', 'qt', 'gal', 'ft3', 'yd3'];
+        expect(converter.volume().possibilities()).toEqual(expected)
+    });
 
-    tests['volume possibilities'] = function () {
-        var actual = convert().possibilities('volume')
-            , expected = ['mm3', 'cm3', 'ml', 'cl', 'dl', 'l', 'kl', 'm3', 'km3', 'krm', 'tsk', 'msk', 'kkp', 'glas', 'kanna', 'tsp', 'Tbs', 'in3', 'fl-oz', 'cup', 'pnt', 'qt', 'gal', 'ft3', 'yd3'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('volume flow rate possibilities', () => {
+        const expected = ['mm3/s', 'cm3/s', 'ml/s', 'cl/s', 'dl/s', 'l/s', 'l/min', 'l/h', 'kl/s', 'kl/min', 'kl/h', 'm3/s', 'm3/min', 'm3/h', 'km3/s', 'tsp/s', 'Tbs/s', 'in3/s', 'in3/min', 'in3/h', 'fl-oz/s', 'fl-oz/min', 'fl-oz/h', 'cup/s', 'pnt/s', 'pnt/min', 'pnt/h', 'qt/s', 'gal/s', 'gal/min', 'gal/h', 'ft3/s', 'ft3/min', 'ft3/h', 'yd3/s', 'yd3/min', 'yd3/h'];
+        expect(converter.volumeFlowRate().possibilities()).toEqual(expected)
+    });
 
-    tests['volume flow rate possibilities'] = function () {
-        var actual = convert().possibilities('volumeFlowRate')
-            , expected = ['mm3/s', 'cm3/s', 'ml/s', 'cl/s', 'dl/s', 'l/s', 'l/min', 'l/h', 'kl/s', 'kl/min', 'kl/h', 'm3/s', 'm3/min', 'm3/h', 'km3/s', 'tsp/s', 'Tbs/s', 'in3/s', 'in3/min', 'in3/h', 'fl-oz/s', 'fl-oz/min', 'fl-oz/h', 'cup/s', 'pnt/s', 'pnt/min', 'pnt/h', 'qt/s', 'gal/s', 'gal/min', 'gal/h', 'ft3/s', 'ft3/min', 'ft3/h', 'yd3/s', 'yd3/min', 'yd3/h'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('length possibilities', () => {
+        const expected = ['mm', 'cm', 'm', 'km', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi'];
+        expect(converter.length().possibilities()).toEqual(expected)
+    });
 
-    tests['length possibilities'] = function () {
-        var actual = convert().possibilities('length')
-            , expected = ['mm', 'cm', 'm', 'km', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('temperature possibilities', () => {
+        const expected = ['C', 'K', 'F', 'R'];
+        expect(converter.temperature().possibilities()).toEqual(expected)
+    });
 
-    tests['temperature possibilities'] = function () {
-        var actual = convert().possibilities('temperature')
-            , expected = ['C', 'K', 'F', 'R'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('time possibilities', () => {
+        const expected = ['ns', 'mu', 'ms', 's', 'min', 'h', 'd', 'week', 'month', 'year'];
+        expect(converter.time().possibilities()).toEqual(expected)
+    });
 
-    tests['time possibilities'] = function () {
-        var actual = convert().possibilities('time')
-            , expected = ['ns', 'mu', 'ms', 's', 'min', 'h', 'd', 'week', 'month', 'year'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('digital possibilities', () => {
+        const expected = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'B', 'KB', 'MB', 'GB', 'TB'];
+        expect(converter.digital().possibilities()).toEqual(expected)
+    });
 
-    tests['digital possibilities'] = function () {
-        var actual = convert().possibilities('digital')
-            , expected = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'B', 'KB', 'MB', 'GB', 'TB'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('partsPer possibilities', () => {
+        const expected = ['ppm', 'ppb', 'ppt', 'ppq'];
+        expect(converter.partsPer().possibilities()).toEqual(expected)
+    });
 
-    tests['partsPer possibilities'] = function () {
-        var actual = convert().possibilities('partsPer')
-            , expected = ['ppm', 'ppb', 'ppt', 'ppq'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('pressure possibilities', () => {
+        const expected = ['Pa', 'kPa', 'MPa', 'hPa', 'bar', 'torr', 'psi', 'ksi'];
+        expect(converter.pressure().possibilities()).toEqual(expected)
+    });
 
-    tests['pressure possibilities'] = function () {
-        var actual = convert().possibilities('pressure')
-            , expected = ['Pa', 'kPa', 'MPa', 'hPa', 'bar', 'torr', 'psi', 'ksi'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('speed possibilities', () => {
+        const expected = ['m/s', 'km/h', 'm/h', 'knot', 'ft/s'];
+        expect(converter.speed().possibilities()).toEqual(expected)
+    });
 
-    tests['speed possibilities'] = function () {
-        var actual = convert().possibilities('speed')
-            , expected = ['m/s', 'km/h', 'm/h', 'knot', 'ft/s'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('pace possibilities', () => {
+        const expected = ['min/km', 's/m', 'min/mi', 's/ft'];
+        expect(converter.pace().possibilities()).toEqual(expected)
+    });
 
-    tests['pace possibilities'] = function () {
-        var actual = convert().possibilities('pace')
-            , expected = ['s/m', 'min/km', 'min/mi', 's/ft'];
-        assert.deepEqual(actual.sort(), expected.sort())
-    };
+    test('current possibilities', () => {
+        const expected = ['A', 'mA', 'kA'];
+        expect(converter.current().possibilities()).toEqual(expected)
+    });
 
-    tests['current possibilities'] = function () {
-        var actual = convert().possibilities('current')
-            , expected = ['A', 'mA', 'kA'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('voltage possibilities', () => {
+        const expected = ['V', 'mV', 'kV'];
+        expect(converter.voltage().possibilities()).toEqual(expected)
+    });
 
-    tests['voltage possibilities'] = function () {
-        var actual = convert().possibilities('voltage')
-            , expected = ['V', 'mV', 'kV'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('power possibilities', () => {
+        const expected = ['W', 'mW', 'kW', 'MW', 'GW'];
+        expect(converter.power().possibilities()).toEqual(expected)
+    });
 
-    tests['power possibilities'] = function () {
-        var actual = convert().possibilities('power')
-            , expected = ['W', 'mW', 'kW', 'MW', 'GW'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('reactivePower possibilities', () => {
+        const expected = ['VAR', 'mVAR', 'kVAR', 'MVAR', 'GVAR'];
+        expect(converter.reactivePower().possibilities()).toEqual(expected)
+    });
 
-    tests['reactive power possibilities'] = function () {
-        var actual = convert().possibilities('reactivePower')
-            , expected = ['VAR', 'mVAR', 'kVAR', 'MVAR', 'GVAR'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('apparentPower possibilities', () => {
+        const expected = ['VA', 'mVA', 'kVA', 'MVA', 'GVA'];
+        expect(converter.apparentPower().possibilities()).toEqual(expected)
+    });
 
-    tests['apparent power possibilities'] = function () {
-        var actual = convert().possibilities('apparentPower')
-            , expected = ['VA', 'mVA', 'kVA', 'MVA', 'GVA'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('energy possibilities', () => {
+        const expected = ['Wh', 'mWh', 'kWh', 'MWh', 'GWh', 'J', 'kJ'];
+        expect(converter.energy().possibilities()).toEqual(expected)
+    });
 
-    tests['energy possibilities'] = function () {
-        var actual = convert().possibilities('energy')
-            , expected = ['Wh', 'mWh', 'kWh', 'MWh', 'GWh', 'J', 'kJ'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('reactiveEnergy possibilities', () => {
+        const expected = ['VARh', 'mVARh', 'kVARh', 'MVARh', 'GVARh'];
+        expect(converter.reactiveEnergy().possibilities()).toEqual(expected)
+    });
 
-    tests['reactive energy possibilities'] = function () {
-        var actual = convert().possibilities('reactiveEnergy')
-            , expected = ['VARh', 'mVARh', 'kVARh', 'MVARh', 'GVARh'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('frequency possibilities', () => {
+        const expected = ['mHz', 'Hz', 'kHz', 'MHz', 'GHz', 'THz', 'rpm', 'deg/s', 'rad/s'];
+        expect(converter.frequency().possibilities()).toEqual(expected)
+    });
 
-    tests['reactive energy possibilities'] = function () {
-        var actual = convert().possibilities('frequency')
-            , expected = ['Hz', 'mHz', 'kHz', 'MHz', 'GHz', 'THz', 'rpm', 'deg/s', 'rad/s'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('illuminance possibilities', () => {
+        const expected = ['lx', 'ft-cd'];
+        expect(converter.illuminance().possibilities()).toEqual(expected)
+    });
 
-    tests['illuminance possibilities'] = function () {
-        var actual = convert().possibilities('illuminance')
-            , expected = ['lx', 'ft-cd'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('angle possibilities', () => {
+        const expected = ['rad', 'deg', 'grad', 'arcmin', 'arcsec'];
+        expect(converter.angle().possibilities()).toEqual(expected)
+    });
 
-    tests['angle possibilities'] = function () {
-        var actual = convert().possibilities('angle')
-            , expected = ['rad', 'deg', 'grad', 'arcmin', 'arcsec'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('charge possibilities', () => {
+        const expected = ['c', 'mC', 'μC', 'nC', 'pC'];
+        expect(converter.charge().possibilities()).toEqual(expected)
+    });
 
-    tests['charge possibilities'] = function () {
-        var actual = convert().possibilities('charge')
-            , expected = ['c', 'mC', 'μC', 'nC', 'pC'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
+    test('force possibilities', () => {
+        const expected = ['N', 'kN', 'lbf'];
+        expect(converter.force().possibilities()).toEqual(expected)
+    });
 
-    tests['force possibilities'] = function () {
-        var actual = convert().possibilities('force')
-            , expected = ['N', 'kN', 'lbf'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
-
-    tests['acceleration possibilities'] = function () {
-        var actual = convert().possibilities('acceleration')
-            , expected = ['g-force', 'm/s2'];
-        assert.deepEqual(actual.sort(), expected.sort());
-    };
-
-
+    test('acceleration possibilities', () => {
+        const expected = ['g-force', 'm/s2'];
+        expect(converter.acceleration().possibilities()).toEqual(expected)
+    });
 });

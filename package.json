@@ -13,7 +13,10 @@
     "pretest": "agadoo",
     "pre-commit": "eslint '**/*.js' --fix"
   },
-  "author": "",
+  "author": {
+    "name": "Georgios Papageorgiou",
+    "email": "giorgospapa86@gmail.com"
+  },
   "license": "MIT",
   "type": "module",
   "devDependencies": {

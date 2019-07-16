@@ -2,7 +2,9 @@
   "name": "units-converter",
   "version": "1.0.0",
   "description": "",
-  "module": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "browser": "dist/umd/index.min.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -12,7 +14,7 @@
     "pre-commit": "eslint '**/*.js' --fix"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@babel/preset-env": "^7.4.5",
@@ -25,7 +27,14 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
-    "rollup": "^1.0.0"
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel-minify": "^9.0.0",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-iife": "^0.2.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "files": [
     "dist"

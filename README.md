@@ -10,7 +10,7 @@ A simple library to convert units. Heavily based on [convert-unitsss](https://gi
 ### Key Features
 * Tree shakable
 * No dependencies
-* Build in es6, cmj and umd
+* Build for es6, cmj and umd
 
 ## Installation
 
@@ -18,4 +18,4 @@ A simple library to convert units. Heavily based on [convert-unitsss](https://gi
 
 ## Units
 
-## 
+## Road map

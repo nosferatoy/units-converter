@@ -9,41 +9,40 @@ const angle = {
     transform: (val) => { return val * RATIO },
     rad: {
       name: {
-        singular: 'radian'
-        , plural: 'radians'
-      }
-      , to_anchor: 180 / PI
-    }
-    , deg: {
+        singular: 'radian',
+        plural: 'radians'
+      },
+      to_anchor: 180 / PI
+    },
+    deg: {
       name: {
-        singular: 'degree'
-        , plural: 'degrees'
-      }
-      , to_anchor: 1
-    }
-    , grad: {
+        singular: 'degree',
+        plural: 'degrees'
+      },
+      to_anchor: 1
+    },
+    grad: {
       name: {
-        singular: 'gradian'
-        , plural: 'gradians'
-      }
-      , to_anchor: 9 / 10
-    }
-    , arcmin: {
+        singular: 'gradian',
+        plural: 'gradians'
+      },
+      to_anchor: 9 / 10
+    },
+    arcmin: {
       name: {
-        singular: 'arcminute'
-        , plural: 'arcminutes'
-      }
-      , to_anchor: 1 / 60
-    }
-    , arcsec: {
+        singular: 'arcminute',
+        plural: 'arcminutes'
+      },
+      to_anchor: 1 / 60
+    },
+    arcsec: {
       name: {
-        singular: 'arcsecond'
-        , plural: 'arcseconds'
-      }
-      , to_anchor: 1 / 3600
+        singular: 'arcsecond',
+        plural: 'arcseconds'
+      },
+      to_anchor: 1 / 3600
     }
   }
 }
 
 export default utils(angle)
-

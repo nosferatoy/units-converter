@@ -5,7 +5,6 @@ const ACCURACY = 0.000001
 const percentError = (expected, actual) => {
   return Math.abs((expected - actual) / actual)
 }
-var EPSILON = 0.000001
 
 test('c to c', () => {
   expect(charge(1).from('c').to('c').value).toEqual(1)

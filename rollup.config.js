@@ -1,12 +1,6 @@
 import pkg from './package.json'
 import path from 'path'
-import minify from 'rollup-plugin-babel-minify';
-import { uglify } from 'rollup-plugin-uglify';
 import { terser } from 'rollup-plugin-terser'
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import iife from "rollup-plugin-iife";
 
 const utils = path.resolve(__dirname, 'src/utils.js')
 
@@ -257,7 +251,7 @@ export default [
     input: 'src/index.js',
     output: [
       { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' },
+      { file: pkg.module, format: 'es' }
     ],
     external: [acceleration, angle, apparentPower, area, charge, current, digital, each, energy, force, frequency,
       illuminance, length, mass, pace, partsPer, power, pressure, reactiveEnergy, reactivePower, speed, temperature,
@@ -268,10 +262,10 @@ export default [
     plugins: [terser()],
     output: [{
       compact: true,
-      name: "converter",
+      name: 'converter',
       file: pkg.browser,
       format: 'umd',
       esModule: false
-    }],
+    }]
   }
 ]

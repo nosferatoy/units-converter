@@ -8,24 +8,24 @@ const current = {
     transform: (val) => { return RATIO * val },
     A: {
       name: {
-        singular: 'Ampere'
-        , plural: 'Amperes'
-      }
-      , to_anchor: 1
-    }
-    , mA: {
+        singular: 'Ampere',
+        plural: 'Amperes'
+      },
+      to_anchor: 1
+    },
+    mA: {
       name: {
-        singular: 'Milliampere'
-        , plural: 'Milliamperes'
-      }
-      , to_anchor: .001
-    }
-    , kA: {
+        singular: 'Milliampere',
+        plural: 'Milliamperes'
+      },
+      to_anchor: 0.001
+    },
+    kA: {
       name: {
-        singular: 'Kiloampere'
-        , plural: 'Kiloamperes'
-      }
-      , to_anchor: 1000
+        singular: 'Kiloampere',
+        plural: 'Kiloamperes'
+      },
+      to_anchor: 1000
     }
   }
 }

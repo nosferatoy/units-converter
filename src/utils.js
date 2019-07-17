@@ -29,7 +29,7 @@ Converter.prototype.to = function (to) {
   }
 
   if (this.origin.abbr === this.destination.abbr) {
-    return Object.assign({ value:this.val }, this.describe(this.destination.abbr));
+    return Object.assign({ value: this.val }, this.describe(this.destination.abbr))
   }
 
   result = this.val * this.origin.unit.to_anchor
@@ -46,24 +46,23 @@ Converter.prototype.to = function (to) {
     result += this.destination.unit.anchor_shift
   }
 
-  return Object.assign({ value:  result / this.destination.unit.to_anchor }, this.describe(this.destination.abbr));
+  return Object.assign({ value: result / this.destination.unit.to_anchor }, this.describe(this.destination.abbr))
 }
 
 Converter.prototype.toBest = function (options) {
-  if (!this.origin)
-    throw new Error('.toBest must be called after .from');
+  if (!this.origin) { throw new Error('.toBest must be called after .from') }
 
   options = Object.assign({
     exclude: [],
-    cutOffNumber: 1,
+    cutOffNumber: 1
   }, options)
 
   return this.list()
     .filter(item => !options.exclude.includes(item.unit) && this.describe(item.unit).system === this.origin.system)
     .reduce((acc, item) => {
-      const result = this.to(item.unit);
+      const result = this.to(item.unit)
       if (!acc || (result.value >= options.cutOffNumber && result.value < acc.value)) {
-        return acc = result;
+        return result
       } else {
         return acc
       }
@@ -96,7 +95,7 @@ Converter.prototype.throwUnsupportedUnitError = function (what) {
 Converter.prototype.describe = function (abbr) {
   if (!abbr) { throw new Error('You must select a unit') }
 
-  const unit = this.getUnit(abbr);
+  const unit = this.getUnit(abbr)
 
   return {
     unit: unit.abbr,
@@ -113,7 +112,7 @@ Converter.prototype.possibilities = function () {
     }))
 }
 
-export default function converter(definitions) {
+export default function converter (definitions) {
   return (val) => {
     return new Converter(val, definitions)
   }

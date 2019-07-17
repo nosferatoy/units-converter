@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "jest --coverage",
+    "test": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "lint": "eslint '**/*.js' --fix",
     "pretest": "agadoo"
   },
@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.4.5",
     "agadoo": "^1.0.1",
     "babel-jest": "^24.8.0",
+    "codacy-coverage": "^3.4.0",
     "eslint": "^6.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.3",

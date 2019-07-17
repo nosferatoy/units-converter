@@ -1,12 +1,6 @@
 import pkg from './package.json'
 import path from 'path'
-import minify from 'rollup-plugin-babel-minify';
-import { uglify } from 'rollup-plugin-uglify';
 import { terser } from 'rollup-plugin-terser'
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import iife from "rollup-plugin-iife";
 
 const utils = path.resolve(__dirname, 'src/utils.js')
 

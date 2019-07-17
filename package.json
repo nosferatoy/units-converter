@@ -10,8 +10,12 @@
     "dev": "rollup -c -w",
     "test": "jest --coverage",
     "lint": "eslint '**/*.js' --fix",
-    "pretest": "agadoo",
-    "pre-commit": "eslint '**/*.js' --fix"
+    "pretest": "agadoo"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "author": {
     "name": "Georgios Papageorgiou",
@@ -31,13 +35,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "rollup": "^1.0.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-babel-minify": "^9.0.0",
-    "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-iife": "^0.2.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^5.1.1",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-terser": "^5.1.1"
   },
   "files": [
     "dist"

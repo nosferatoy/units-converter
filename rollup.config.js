@@ -251,7 +251,7 @@ export default [
     input: 'src/index.js',
     output: [
       { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' },
+      { file: pkg.module, format: 'es' }
     ],
     external: [acceleration, angle, apparentPower, area, charge, current, digital, each, energy, force, frequency,
       illuminance, length, mass, pace, partsPer, power, pressure, reactiveEnergy, reactivePower, speed, temperature,
@@ -262,10 +262,10 @@ export default [
     plugins: [terser()],
     output: [{
       compact: true,
-      name: "converter",
+      name: 'converter',
       file: pkg.browser,
       format: 'umd',
       esModule: false
-    }],
+    }]
   }
 ]

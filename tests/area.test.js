@@ -2,7 +2,7 @@ import { area } from '../src/index.js'
 
 const ACCURACY = 1 / 1000
 const percentError = (expected, actual) => {
-    return Math.abs((expected - actual) / actual)
+  return Math.abs((expected - actual) / actual)
 }
 
 test('ft2 to ft2', () => {

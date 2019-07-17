@@ -1,6 +1,5 @@
 import { energy } from '../src/index.js'
 
-
 test('Wh to Wh', () => {
   expect(energy(1).from('Wh').to('Wh').value).toEqual(1)
 })

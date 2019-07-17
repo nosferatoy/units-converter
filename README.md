@@ -1,0 +1,2 @@
+# units-converter
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/460112f350d24e50a5c66b6834371dca)](https://app.codacy.com/app/nosferatoy/units-converter?utm_source=github.com&utm_medium=referral&utm_content=nosferatoy/units-converter&utm_campaign=Badge_Grade_Settings)

@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage --token bb7daa4f3963435aabab84e6320636d5 --username nosferatoy --projectName units-converter",
+    "test": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "lint": "eslint '**/*.js' --fix",
     "pretest": "agadoo"
   },

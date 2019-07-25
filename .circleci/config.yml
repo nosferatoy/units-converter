@@ -1,16 +1,25 @@
-version: 2
+version: 2.1
+
+executors:
+  my-executor:
+    docker:
+      - image: buildpack-deps:jessie
+    working_directory: /
+
 jobs:
   build:
-    docker:
-      - image: circleci/node:latest
+    executor: my-executor
     steps:
       - checkout
       - run: npm install
       - run: npm run build
+      - persist_to_workspace:
+          root: workspace
   test:
-    docker:
-      - image: circleci/node:latest
+    executor: my-executor
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - checkout
       - run: echo 'export CODACY_PROJECT_TOKEN' >> $CODACY_PROJECT_TOKEN	
       - run: npm install

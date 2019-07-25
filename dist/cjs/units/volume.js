@@ -4,278 +4,197 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var utils = _interopDefault(require('../utils.js'));
 
-const RATIO = 33.8140227;
+const RATIO = 33.8140226;
 
-const volumeFlowRate = {
+const volume = {
   metric: {
-    baseUnit: 'l/s',
-    transform: (val) => { return val * RATIO },
-    'mm3/s': {
+    baseUnit: 'l',
+    transform: (val) => { return RATIO * val },
+    mm3: {
       name: {
-        singular: 'Cubic Millimeter per second'
-        , plural: 'Cubic Millimeters per second'
-      }
-      , to_anchor: 1 / 1000000
-    }
-    , 'cm3/s': {
+        singular: 'Cubic Millimeter',
+        plural: 'Cubic Millimeters'
+      },
+      to_anchor: 1 / 1000000
+    },
+    cm3: {
       name: {
-        singular: 'Cubic Centimeter per second'
-        , plural: 'Cubic Centimeters per second'
-      }
-      , to_anchor: 1 / 1000
-    }
-    , 'ml/s': {
+        singular: 'Cubic Centimeter',
+        plural: 'Cubic Centimeters'
+      },
+      to_anchor: 1 / 1000
+    },
+    ml: {
       name: {
-        singular: 'Millilitre per second'
-        , plural: 'Millilitres per second'
-      }
-      , to_anchor: 1 / 1000
-    }
-    , 'cl/s': {
+        singular: 'Millilitre',
+        plural: 'Millilitres'
+      },
+      to_anchor: 1 / 1000
+    },
+    cl: {
       name: {
-        singular: 'Centilitre per second'
-        , plural: 'Centilitres per second'
-      }
-      , to_anchor: 1 / 100
-    }
-    , 'dl/s': {
+        singular: 'Centilitre',
+        plural: 'Centilitres'
+      },
+      to_anchor: 1 / 100
+    },
+    dl: {
       name: {
-        singular: 'Decilitre per second'
-        , plural: 'Decilitres per second'
-      }
-      , to_anchor: 1 / 10
-    }
-    , 'l/s': {
+        singular: 'Decilitre',
+        plural: 'Decilitres'
+      },
+      to_anchor: 1 / 10
+    },
+    l: {
       name: {
-        singular: 'Litre per second'
-        , plural: 'Litres per second'
-      }
-      , to_anchor: 1
-    }
-    , 'l/min': {
+        singular: 'Litre',
+        plural: 'Litres'
+      },
+      to_anchor: 1
+    },
+    kl: {
       name: {
-        singular: 'Litre per minute'
-        , plural: 'Litres per minute'
-      }
-      , to_anchor: 1 / 60
-    }
-    , 'l/h': {
+        singular: 'Kilolitre',
+        plural: 'Kilolitres'
+      },
+      to_anchor: 1000
+    },
+    m3: {
       name: {
-        singular: 'Litre per hour'
-        , plural: 'Litres per hour'
-      }
-      , to_anchor: 1 / 3600
-    }
-    , 'kl/s': {
+        singular: 'Cubic meter',
+        plural: 'Cubic meters'
+      },
+      to_anchor: 1000
+    },
+    km3: {
       name: {
-        singular: 'Kilolitre per second'
-        , plural: 'Kilolitres per second'
-      }
-      , to_anchor: 1000
-    }
-    , 'kl/min': {
+        singular: 'Cubic kilometer',
+        plural: 'Cubic kilometers'
+      },
+      to_anchor: 1000000000000
+    },
+
+    // Swedish units
+    krm: {
       name: {
-        singular: 'Kilolitre per minute'
-        , plural: 'Kilolitres per minute'
-      }
-      , to_anchor: 50 / 3
-    }
-    , 'kl/h': {
+        singular: 'Matsked',
+        plural: 'Matskedar'
+      },
+      to_anchor: 1 / 1000
+    },
+    tsk: {
       name: {
-        singular: 'Kilolitre per hour'
-        , plural: 'Kilolitres per hour'
-      }
-      , to_anchor: 5 / 18
-    }
-    , 'm3/s': {
+        singular: 'Tesked',
+        plural: 'Teskedar'
+      },
+      to_anchor: 5 / 1000
+    },
+    msk: {
       name: {
-        singular: 'Cubic meter per second'
-        , plural: 'Cubic meters per second'
-      }
-      , to_anchor: 1000
-    }
-    , 'm3/min': {
+        singular: 'Matsked',
+        plural: 'Matskedar'
+      },
+      to_anchor: 15 / 1000
+    },
+    kkp: {
       name: {
-        singular: 'Cubic meter per minute'
-        , plural: 'Cubic meters per minute'
-      }
-      , to_anchor: 50 / 3
-    }
-    , 'm3/h': {
+        singular: 'Kaffekopp',
+        plural: 'Kaffekoppar'
+      },
+      to_anchor: 150 / 1000
+    },
+    glas: {
       name: {
-        singular: 'Cubic meter per hour'
-        , plural: 'Cubic meters per hour'
-      }
-      , to_anchor: 5 / 18
-    }
-    , 'km3/s': {
+        singular: 'Glas',
+        plural: 'Glas'
+      },
+      to_anchor: 200 / 1000
+    },
+    kanna: {
       name: {
-        singular: 'Cubic kilometer per second'
-        , plural: 'Cubic kilometers per second'
-      }
-      , to_anchor: 1000000000000
+        singular: 'Kanna',
+        plural: 'Kannor'
+      },
+      to_anchor: 2.617
     }
   },
+
   imperial: {
-    baseUnit: 'fl-oz/s',
+    baseUnit: 'fl-oz',
     transform: (val) => { return val * 1 / RATIO },
-    'tsp/s': {
+    tsp: {
       name: {
-        singular: 'Teaspoon per second'
-        , plural: 'Teaspoons per second'
-      }
-      , to_anchor: 1 / 6
-    }
-    , 'Tbs/s': {
+        singular: 'Teaspoon',
+        plural: 'Teaspoons'
+      },
+      to_anchor: 1 / 6
+    },
+    Tbs: {
       name: {
-        singular: 'Tablespoon per second'
-        , plural: 'Tablespoons per second'
-      }
-      , to_anchor: 1 / 2
-    }
-    , 'in3/s': {
+        singular: 'Tablespoon',
+        plural: 'Tablespoons'
+      },
+      to_anchor: 1 / 2
+    },
+    in3: {
       name: {
-        singular: 'Cubic inch per second'
-        , plural: 'Cubic inches per second'
-      }
-      , to_anchor: 0.55411
-    }
-    , 'in3/min': {
+        singular: 'Cubic inch',
+        plural: 'Cubic inches'
+      },
+      to_anchor: 0.55411
+    },
+    'fl-oz': {
       name: {
-        singular: 'Cubic inch per minute'
-        , plural: 'Cubic inches per minute'
-      }
-      , to_anchor: 0.55411 / 60
-    }
-    , 'in3/h': {
+        singular: 'Fluid Ounce',
+        plural: 'Fluid Ounces'
+      },
+      to_anchor: 1
+    },
+    cup: {
       name: {
-        singular: 'Cubic inch per hour'
-        , plural: 'Cubic inches per hour'
-      }
-      , to_anchor: 0.55411 / 3600
-    }
-    , 'fl-oz/s': {
+        singular: 'Cup',
+        plural: 'Cups'
+      },
+      to_anchor: 8
+    },
+    pnt: {
       name: {
-        singular: 'Fluid Ounce per second'
-        , plural: 'Fluid Ounces per second'
-      }
-      , to_anchor: 1
-    }
-    , 'fl-oz/min': {
+        singular: 'Pint',
+        plural: 'Pints'
+      },
+      to_anchor: 16
+    },
+    qt: {
       name: {
-        singular: 'Fluid Ounce per minute'
-        , plural: 'Fluid Ounces per minute'
-      }
-      , to_anchor: 1 / 60
-    }
-    , 'fl-oz/h': {
+        singular: 'Quart',
+        plural: 'Quarts'
+      },
+      to_anchor: 32
+    },
+    gal: {
       name: {
-        singular: 'Fluid Ounce per hour'
-        , plural: 'Fluid Ounces per hour'
-      }
-      , to_anchor: 1 / 3600
-    }
-    , 'cup/s': {
+        singular: 'Gallon',
+        plural: 'Gallons'
+      },
+      to_anchor: 128
+    },
+    ft3: {
       name: {
-        singular: 'Cup per second'
-        , plural: 'Cups per second'
-      }
-      , to_anchor: 8
-    }
-    , 'pnt/s': {
+        singular: 'Cubic foot',
+        plural: 'Cubic feet'
+      },
+      to_anchor: 957.506
+    },
+    yd3: {
       name: {
-        singular: 'Pint per second'
-        , plural: 'Pints per second'
-      }
-      , to_anchor: 16
-    }
-    , 'pnt/min': {
-      name: {
-        singular: 'Pint per minute'
-        , plural: 'Pints per minute'
-      }
-      , to_anchor: 4 / 15
-    }
-    , 'pnt/h': {
-      name: {
-        singular: 'Pint per hour'
-        , plural: 'Pints per hour'
-      }
-      , to_anchor: 1 / 225
-    }
-    , 'qt/s': {
-      name: {
-        singular: 'Quart per second'
-        , plural: 'Quarts per second'
-      }
-      , to_anchor: 32
-    }
-    , 'gal/s': {
-      name: {
-        singular: 'Gallon per second'
-        , plural: 'Gallons per second'
-      }
-      , to_anchor: 128
-    }
-    , 'gal/min': {
-      name: {
-        singular: 'Gallon per minute'
-        , plural: 'Gallons per minute'
-      }
-      , to_anchor: 32 / 15
-    }
-    , 'gal/h': {
-      name: {
-        singular: 'Gallon per hour'
-        , plural: 'Gallons per hour'
-      }
-      , to_anchor: 8 / 225
-    }
-    , 'ft3/s': {
-      name: {
-        singular: 'Cubic foot per second'
-        , plural: 'Cubic feet per second'
-      }
-      , to_anchor: 957.506
-    }
-    , 'ft3/min': {
-      name: {
-        singular: 'Cubic foot per minute'
-        , plural: 'Cubic feet per minute'
-      }
-      , to_anchor: 957.506 / 60
-    }
-    , 'ft3/h': {
-      name: {
-        singular: 'Cubic foot per hour'
-        , plural: 'Cubic feet per hour'
-      }
-      , to_anchor: 957.506 / 3600
-    }
-    , 'yd3/s': {
-      name: {
-        singular: 'Cubic yard per second'
-        , plural: 'Cubic yards per second'
-      }
-      , to_anchor: 25852.7
-    }
-    , 'yd3/min': {
-      name: {
-        singular: 'Cubic yard per minute'
-        , plural: 'Cubic yards per minute'
-      }
-      , to_anchor: 25852.7 / 60
-    }
-    , 'yd3/h': {
-      name: {
-        singular: 'Cubic yard per hour'
-        , plural: 'Cubic yards per hour'
-      }
-      , to_anchor: 25852.7 / 3600
+        singular: 'Cubic yard',
+        plural: 'Cubic yards'
+      },
+      to_anchor: 25852.7
     }
   }
 };
 
-var volumeFlowRate$1 = utils(volumeFlowRate);
+var volume$1 = utils(volume);
 
-module.exports = volumeFlowRate$1;
+module.exports = volume$1;

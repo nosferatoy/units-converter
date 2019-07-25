@@ -1,4 +1,8 @@
-import utils from '../utils.js';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var utils = _interopDefault(require('../utils.js'));
 
 const RATIO = 33.8140227;
 
@@ -274,4 +278,4 @@ const volumeFlowRate = {
 
 var volumeFlowRate$1 = utils(volumeFlowRate);
 
-export default volumeFlowRate$1;
+module.exports = volumeFlowRate$1;

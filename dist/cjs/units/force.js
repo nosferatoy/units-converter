@@ -12,17 +12,17 @@ const force = {
     transform: (val) => { return val * 1 / RATIO },
     N: {
       name: {
-        singular: 'Newton'
-        , plural: 'Newtons'
-      }
-      , to_anchor: 1
-    }
-    , kN: {
+        singular: 'Newton',
+        plural: 'Newtons'
+      },
+      to_anchor: 1
+    },
+    kN: {
       name: {
-        singular: 'Kilonewton'
-        , plural: 'Kilonewtons'
-      }
-      , to_anchor: 1000
+        singular: 'Kilonewton',
+        plural: 'Kilonewtons'
+      },
+      to_anchor: 1000
     }
   },
   imperial: {
@@ -30,11 +30,11 @@ const force = {
     transform: (val) => { return RATIO * val },
     lbf: {
       name: {
-        singular: 'Pound-force'
-        , plural: 'Pound-forces'
-      }
-      , to_anchor: 1
-    },
+        singular: 'Pound-force',
+        plural: 'Pound-forces'
+      },
+      to_anchor: 1
+    }
   }
 };
 

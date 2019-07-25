@@ -15,6 +15,9 @@ jobs:
       - run: npm run build
       - persist_to_workspace:
           root: workspace
+          paths:
+            - dist
+            
   test:
     executor: my-executor
     steps:

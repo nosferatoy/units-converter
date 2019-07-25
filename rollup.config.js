@@ -236,7 +236,7 @@ export default [
     input: 'src/units/volumeFlowRate.js',
     output: [
       { name: 'volumeFlowRate', file: 'dist/es/units/volumeFlowRate.js', format: 'es' },
-      { name: 'volumeFlowRate', file: 'dist/cjs/units/volume.js', format: 'cjs' }
+      { name: 'volumeFlowRate', file: 'dist/cjs/units/volumeFlowRate.js', format: 'cjs' }
     ],
     external: [utils]
   },

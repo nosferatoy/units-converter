@@ -5,7 +5,7 @@ A simple library to convert units. Heavily based on [convert-units](https://gith
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/145ef4b5949d4be78a2bf577f078be49)](https://www.codacy.com/app/nosferatoy/units-converter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nosferatoy/units-converter&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/145ef4b5949d4be78a2bf577f078be49)](https://www.codacy.com/app/nosferatoy/units-converter?utm_source=github.com&utm_medium=referral&utm_content=nosferatoy/units-converter&utm_campaign=Badge_Coverage)
 
-[Example](https://appsonrent.com/wp-content/uploads/2017/07/Under-Cunstruction-Banner1600X900.jpg)
+An [example](https://github.com/nosferatoy/units-converter) implementation of the library.
 
 ### Key Features
 * Tree shakable.
@@ -22,7 +22,7 @@ It will be released in npm and CDN during the first days of August.
 The library provide a simple chained API to transform units of the same type.
 The units are broken down to modules, so it is possible and recommended, to load only the unite types that you are using.
 ```js
-import { voltage } from '../src/index.js'
+import { voltage } from 'units-converter';
 
 voltage(1).from('V').to('mV').value;
 //1000
@@ -30,7 +30,7 @@ voltage(1).from('V').to('mV').value;
 or
 
 ```js
-import * as converter from '../src/index.js'
+import * as converter from 'units-converter';
 
 converter.voltage(1).from('V').to('mV').value;
 //1000
@@ -41,7 +41,7 @@ converter.mass(1).from('lb').to('oz').value;
 
 * Convert unit will return an object of the unit specifed in the "to" function
 ```js
-import { length } from '../src/index.js'
+import { length } from 'units-converter';
 
 length(1200).from('mm').to('m');
  /* {
@@ -54,7 +54,7 @@ length(1200).from('mm').to('m');
 ```
 * Convert unit to Best
 ```js
-import { length } from '../src/index.js'
+import { length } from 'units-converter';
 
 // the smallest unit with a value above 1
 length(12000).from('mm').toBest();
@@ -99,7 +99,7 @@ length(1000).from('mm').toBest({ cutOffNumber: 10 });
 
 * Possibilities will return an array with the abbreviations of the available units
 ```js
-import { voltage } from '../src/index.js'
+import { voltage } from 'units-converter';
 
 voltage().from('V').possibilities();
 // [ 'V', 'mV', 'kV' ]
@@ -107,7 +107,7 @@ voltage().from('V').possibilities();
 
 * Describe will return an object with all the details of the unit
 ```js
-import { voltage } from '../src/index.js'
+import { voltage } from 'units-converter';
 
 voltage().describe('V');
 
@@ -121,7 +121,7 @@ voltage().describe('V');
 
 * List will return and array with the description of all the available units
 ```js
-import { voltage } from '../src/index.js'
+import { voltage } from 'units-converter';
 
 voltage().list();
 

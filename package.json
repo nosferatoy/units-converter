@@ -5,6 +5,20 @@
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
   "browser": "dist/umd/index.min.js",
+  "keywords" : [
+  "units",
+  "conversion",
+  "convert-units",
+  "es6-modules",
+  "commonjs",
+  "javascript",
+  "measurement-units",
+  "unit-of-measure"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/nosferatoy/units-converter"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",

@@ -6,6 +6,19 @@ defaults: &defaults
     - image: circleci/node:8.9.1
 
 jobs:
+  branch_tag_check:
+    steps:
+      - run:
+          name: check if branch AND tag conditions are met
+          command: |
+            if [[ ! ($CIRCLE_BRANCH == "only-this-branch" && \
+              $CIRCLE_TAG == "only-this-tag") ]]
+            then
+              exit 1
+            else
+              echo "rest of jobs can proceed"
+            fi
+
   build:
     <<: *defaults
     steps:
@@ -40,6 +53,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
+      - branch_tag_check
       - build
       - test:
           requires:
@@ -48,3 +62,4 @@ workflows:
           type: approval
           requires:
             - test
+            - branch_tag_check

@@ -14,19 +14,17 @@ jobs:
       - run: npm install
       - run: npm run build
       - persist_to_workspace:
-          root: workspace
-          paths:
-            - dist
+          root: ~/repo
+          paths: .
 
   test:
     executor: my-executor
     steps:
       - attach_workspace:
-          at: /tmp/workspace
-      - checkout
+          at: ~/repo
       - run: echo 'export CODACY_PROJECT_TOKEN' >> $CODACY_PROJECT_TOKEN	
-      - run: npm install
       - run: npm run test
+
 workflows:
   version: 2
   build_and_test:

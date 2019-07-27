@@ -1,6 +1,6 @@
 {
   "name": "units-converter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple utility library to measure and convert between units",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",

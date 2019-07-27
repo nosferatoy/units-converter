@@ -48,6 +48,6 @@ workflows:
           type: approval
           requires:
             - test
-            filters:
-              tags:
-                only: /^v.*/
+          filters:
+            tags:
+              only: /^v.*/

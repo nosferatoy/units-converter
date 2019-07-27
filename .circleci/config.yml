@@ -2,6 +2,7 @@ version: 2.1
 
 executors:
   my-executor:
+    working_directory: ~/repo
     docker:
       - image: buildpack-deps:jessie
 

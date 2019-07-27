@@ -15,7 +15,9 @@ An [example](https://github.com/mugrufis/units-converter-consumer) implementatio
 
 ## Installation
 
-It will be released in npm and CDN during the first days of August.
+```
+npm install units-converter --save
+```
 
 ## Usage
 

@@ -45,10 +45,6 @@ workflows:
           requires:
             - build
       - deploy:
+          type: approval
           requires:
             - test
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/

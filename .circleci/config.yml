@@ -7,7 +7,7 @@ defaults: &defaults
 
 jobs:
   build:
-    <<: *defaults 
+    <<: *defaults
     steps:
       - checkout
       - run: npm install
@@ -17,7 +17,7 @@ jobs:
           paths: .
 
   test:
-    executor: my-executor
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/repo

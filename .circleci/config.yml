@@ -1,14 +1,13 @@
-version: 2.1
+version: 2
 
-executors:
-  my-executor:
-    working_directory: ~/repo
-    docker:
-      - image: buildpack-deps:jessie
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: buildpack-deps:jessie
 
 jobs:
   build:
-    executor: my-executor
+    <<: *defaults 
     steps:
       - checkout
       - run: npm install

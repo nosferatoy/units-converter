@@ -4,7 +4,6 @@ executors:
   my-executor:
     docker:
       - image: buildpack-deps:jessie
-    working_directory: /tmp
 
 jobs:
   build:

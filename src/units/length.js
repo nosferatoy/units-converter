@@ -6,6 +6,55 @@ const length = {
   metric: {
     baseUnit: 'm',
     transform: (val) => { return val * RATIO },
+    ym: {
+      name: {
+        singular: 'Yoctometre',
+        plural: 'Yeptometres'
+      },
+      to_anchor: 1 / 1000000000000000000000000
+    },
+    zm: {
+      name: {
+        singular: 'Zeptometre',
+        plural: 'Zeptometres'
+      },
+      to_anchor: 1 / 1000000000000000000000
+    },
+    am: {
+      name: {
+        singular: 'Attometre',
+        plural: 'Attometres'
+      },
+      to_anchor: 1 / 1000000000000000000
+    },
+    fm: {
+      name: {
+        singular: 'Femtometre',
+        plural: 'Femtometres'
+      },
+      to_anchor: 1 / 1000000000000000
+    },
+    pm: {
+      name: {
+        singular: 'Picometre',
+        plural: 'Picometres'
+      },
+      to_anchor: 1 / 1000000000000
+    },
+    nm: {
+      name: {
+        singular: 'Nanometre',
+        plural: 'Nanometres'
+      },
+      to_anchor: 1 / 1000000000
+    },
+    µm: {
+      name: {
+        singular: 'Micrometre',
+        plural: 'Micrometres'
+      },
+      to_anchor: 1 / 1000000
+    },
     mm: {
       name: {
         singular: 'Millimeter',
@@ -20,6 +69,13 @@ const length = {
       },
       to_anchor: 1 / 100
     },
+    dm: {
+      name: {
+        singular: 'Decimetre',
+        plural: 'Decimetres'
+      },
+      to_anchor: 1 / 10
+    },
     m: {
       name: {
         singular: 'Meter',
@@ -27,12 +83,75 @@ const length = {
       },
       to_anchor: 1
     },
+    dam: {
+      name: {
+        singular: 'Decametre',
+        plural: 'Decametres'
+      },
+      to_anchor: 10
+    },
+    hm: {
+      name: {
+        singular: 'Hectometre',
+        plural: 'Hectometres'
+      },
+      to_anchor: 100
+    },
     km: {
       name: {
         singular: 'Kilometer',
         plural: 'Kilometers'
       },
       to_anchor: 1000
+    },
+    Mm: {
+      name: {
+        singular: 'Megametre',
+        plural: 'Megametres'
+      },
+      to_anchor: 1000000
+    },
+    Gm: {
+      name: {
+        singular: 'Gigametre',
+        plural: 'Gigametres'
+      },
+      to_anchor: 1000000000
+    },
+    Tm: {
+      name: {
+        singular: 'Terametre',
+        plural: 'Terametres'
+      },
+      to_anchor: 1000000000000
+    },
+    Pm: {
+      name: {
+        singular: 'Petametre',
+        plural: 'Petametres'
+      },
+      to_anchor: 1000000000000000
+    },
+    Em: {
+      name: {
+        singular: 'Exametre',
+        plural: 'Exametres'
+      },
+      to_anchor: 1000000000000000000
+    },
+    Zm: {
+      name: {
+        singular: 'Zettametre',
+        plural: 'Zettametres'
+      },
+      to_anchor: 1000000000000000000000
+    },
+    Ym: {
+      name: {
+        singular: 'Yottametre',
+        plural: 'Yottametres'
+      },
+      to_anchor: 1000000000000000000000000
     }
   },
   imperial: {

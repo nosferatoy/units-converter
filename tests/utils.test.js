@@ -13,16 +13,16 @@ describe('Test to best', () => {
 
   test('best mm with excludes measurements km and m', () => {
     expect(converter.length(1200000).from('mm').toBest({ exclude: ['km', 'm'] })).toEqual({
-      value: 120000,
-      unit: 'cm',
+      value: 12,
+      unit: 'hm',
       system: 'metric',
-      singular: 'Centimeter',
-      plural: 'Centimeters'
+      singular: 'Hectometre',
+      plural: 'Hectometres'
     })
   })
 
-  test('best mm with excludes measurements km and m', () => {
-    expect(converter.length(1200000).from('mm').toBest({ exclude: ['km', 'm'] })).toEqual({
+  test('best mm with excludes measurements hm, km, dam, m and dm', () => {
+    expect(converter.length(1200000).from('mm').toBest({ exclude: ['hm', 'km', 'dam', 'm', 'dm'] })).toEqual({
       value: 120000,
       unit: 'cm',
       system: 'metric',
@@ -33,16 +33,16 @@ describe('Test to best', () => {
 
   test('best km excluding self', () => {
     expect(converter.length(10).from('km').toBest({ exclude: ['km'] })).toEqual({
-      value: 10000,
-      unit: 'm',
+      value: 100,
+      unit: 'hm',
       system: 'metric',
-      singular: 'Meter',
-      plural: 'Meters'
+      singular: 'Hectometre',
+      plural: 'Hectometres'
     })
   })
 
   test('if all measurements are excluded return self', () => {
-    expect(converter.length(10).from('km').toBest({ exclude: ['mm, cm, m, km'] })).toEqual({
+    expect(converter.length(10).from('km').toBest({ exclude: ['mm, cm, dm, m, dam ,hm, km'] })).toEqual({
       value: 10,
       unit: 'km',
       system: 'metric',
@@ -53,11 +53,11 @@ describe('Test to best', () => {
 
   test('pre-cut off numbe', () => {
     expect(converter.length(9000).from('mm').toBest({ cutOffNumber: 10 })).toEqual({
-      value: 900,
-      unit: 'cm',
+      value: 90,
+      unit: 'dm',
       system: 'metric',
-      singular: 'Centimeter',
-      plural: 'Centimeters'
+      singular: 'Decimetre',
+      plural: 'Decimetres'
     })
   })
 
@@ -149,7 +149,7 @@ describe('Test the possibilities', () => {
   })
 
   test('m possibilities', () => {
-    const expected = ['mm', 'cm', 'm', 'km', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi']
+    const expected = ['ym', 'zm', 'am', 'fm', 'pm', 'nm', 'µm', 'mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km', 'Mm', 'Gm', 'Tm', 'Pm', 'Em', 'Zm', 'Ym', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi']
     expect(converter.length().from('m').possibilities()).toEqual(expected)
   })
 
@@ -174,7 +174,7 @@ describe('Test the possibilities', () => {
   })
 
   test('length possibilities', () => {
-    const expected = ['mm', 'cm', 'm', 'km', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi']
+    const expected = ['ym', 'zm', 'am', 'fm', 'pm', 'nm', 'µm', 'mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km', 'Mm', 'Gm', 'Tm', 'Pm', 'Em', 'Zm', 'Ym', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi']
     expect(converter.length().possibilities()).toEqual(expected)
   })
 

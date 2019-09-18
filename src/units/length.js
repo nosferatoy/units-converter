@@ -1,14 +1,29 @@
 import utils from '../utils.js'
 
-const RATIO = 3.28084
+const RATIO = {
+  metric: {
+    astronomical: 1.496e+11,
+    imperial: 3.28084
+  },
+  astronomical: {
+    metric: 1 / 1.496e+11,
+    imperial: 1 / 4.908e+11
+  },
+  imperial: {
+    astronomical: 4.908e+11,
+    metric: 1 / 3.28084
+  }
+}
+
+const FUNCTION = (val, origin, destination) => { return val * RATIO[origin][destination] }
 
 const length = {
   metric: {
     baseUnit: 'm',
-    transform: (val) => { return val * RATIO },
+    transform: FUNCTION,
     ym: {
       name: {
-        singular: 'Yoctometre',
+        singular: 'Yeptometre',
         plural: 'Yeptometres'
       },
       to_anchor: 1 / 1000000000000000000000000
@@ -156,7 +171,7 @@ const length = {
   },
   imperial: {
     baseUnit: 'ft',
-    transform: (val) => { return val * 1 / RATIO },
+    transform: FUNCTION,
     'in': {
       name: {
         singular: 'Inch',
@@ -205,6 +220,31 @@ const length = {
         plural: 'Nautical Miles'
       },
       to_anchor: 6076.12
+    }
+  },
+  astronomical: {
+    baseUnit: 'au',
+    transform: FUNCTION,
+    au: {
+      name: {
+        singular: 'Astronomical unit',
+        plural: 'Astronomical units'
+      },
+      to_anchor: 1
+    },
+    ly: {
+      name: {
+        singular: 'Light-year',
+        plural: 'Light years'
+      },
+      to_anchor: 63241.1
+    },
+    pc: {
+      name: {
+        singular: 'Parsec',
+        plural: 'Parsecs'
+      },
+      to_anchor: 206265
     }
   }
 }

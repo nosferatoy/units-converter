@@ -149,7 +149,7 @@ describe('Test the possibilities', () => {
   })
 
   test('m possibilities', () => {
-    const expected = ['ym', 'zm', 'am', 'fm', 'pm', 'nm', 'µm', 'mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km', 'Mm', 'Gm', 'Tm', 'Pm', 'Em', 'Zm', 'Ym', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi']
+    const expected = ['ym', 'zm', 'am', 'fm', 'pm', 'nm', 'µm', 'mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km', 'Mm', 'Gm', 'Tm', 'Pm', 'Em', 'Zm', 'Ym', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi', 'au', 'ly', 'pc']
     expect(converter.length().from('m').possibilities()).toEqual(expected)
   })
 
@@ -174,7 +174,7 @@ describe('Test the possibilities', () => {
   })
 
   test('length possibilities', () => {
-    const expected = ['ym', 'zm', 'am', 'fm', 'pm', 'nm', 'µm', 'mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km', 'Mm', 'Gm', 'Tm', 'Pm', 'Em', 'Zm', 'Ym', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi']
+    const expected = ['ym', 'zm', 'am', 'fm', 'pm', 'nm', 'µm', 'mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km', 'Mm', 'Gm', 'Tm', 'Pm', 'Em', 'Zm', 'Ym', 'in', 'yd', 'ft-us', 'ft', 'fathom', 'mi', 'nMi', 'au', 'ly', 'pc']
     expect(converter.length().possibilities()).toEqual(expected)
   })
 

@@ -15,8 +15,8 @@ const area = {
     },
     cm2: {
       name: {
-        singular: 'Centimeter',
-        plural: 'Centimeters'
+        singular: 'Square Centimeter',
+        plural: 'Square Centimeters'
       },
       to_anchor: 1 / 10000
     },

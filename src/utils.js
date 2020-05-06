@@ -39,7 +39,7 @@ Converter.prototype.to = function (to) {
   }
 
   if (this.origin.system !== this.destination.system) {
-    result = this.definitions[this.origin.system].transform(result)
+    result = this.definitions[this.origin.system].transform(result, this.origin.system, this.destination.system)
   }
 
   if (this.destination.unit.anchor_shift !== undefined) {

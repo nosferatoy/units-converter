@@ -49,16 +49,88 @@ test('m to cm', () => {
   expect(length(1).from('m').to('cm').value).toEqual(100)
 })
 
-test('cm to m', () => {
-  expect(length(1).from('cm').to('m').value).toEqual(1 / 100)
-})
-
 test('m to mm', () => {
   expect(length(1).from('m').to('mm').value).toEqual(1000)
 })
 
+test('ym to m', () => {
+  expect(length(1).from('ym').to('m').value).toEqual(1 / 1000000000000000000000000)
+})
+
+test('zm to m', () => {
+  expect(length(1).from('zm').to('m').value).toEqual(1 / 1000000000000000000000)
+})
+
+test('am to m', () => {
+  expect(length(1).from('am').to('m').value).toEqual(1 / 1000000000000000000)
+})
+
+test('fm to m', () => {
+  expect(length(1).from('fm').to('m').value).toEqual(1 / 1000000000000000)
+})
+
+test('pm to m', () => {
+  expect(length(1).from('pm').to('m').value).toEqual(1 / 1000000000000)
+})
+
+test('nm to m', () => {
+  expect(length(1).from('nm').to('m').value).toEqual(1 / 1000000000)
+})
+
+test('µm to m', () => {
+  expect(length(1).from('µm').to('m').value).toEqual(1 / 1000000)
+})
+
+test('mm to m', () => {
+  expect(length(1).from('mm').to('m').value).toEqual(1 / 1000)
+})
+
+test('cm to m', () => {
+  expect(length(1).from('cm').to('m').value).toEqual(1 / 100)
+})
+
+test('dm to m', () => {
+  expect(length(1).from('dm').to('m').value).toEqual(1 / 10)
+})
+
+test('dam to m', () => {
+  expect(length(1).from('dam').to('m').value).toEqual(10)
+})
+
+test('hm to m', () => {
+  expect(length(1).from('hm').to('m').value).toEqual(100)
+})
+
 test('km to m', () => {
   expect(length(1).from('km').to('m').value).toEqual(1000)
+})
+
+test('Mm to m', () => {
+  expect(length(1).from('Mm').to('m').value).toEqual(1000000)
+})
+
+test('Gm to m', () => {
+  expect(length(1).from('Gm').to('m').value).toEqual(1000000000)
+})
+
+test('Tm to m', () => {
+  expect(length(1).from('Tm').to('m').value).toEqual(1000000000000)
+})
+
+test('Pm to m', () => {
+  expect(length(1).from('Pm').to('m').value).toEqual(1000000000000000)
+})
+
+test('Em to m', () => {
+  expect(length(1).from('Em').to('m').value).toEqual(1000000000000000000)
+})
+
+test('Zm to m', () => {
+  expect(length(1).from('Zm').to('m').value).toEqual(1000000000000000000000)
+})
+
+test('Ym to m', () => {
+  expect(length(1).from('Ym').to('m').value).toEqual(1000000000000000000000000)
 })
 
 // When converting between systems, expect < 0.1% error

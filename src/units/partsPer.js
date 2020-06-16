@@ -1,11 +1,9 @@
 import utils from '../utils.js'
 
-const RATIO = 0.000001
-
 const partsPer = {
   metric: {
     baseUnit: 'ppm',
-    transform: (val) => { return val * RATIO },
+    transform: (val) => (val / 17.1),
     ppm: {
       name: {
         singular: 'Part-per Million',
@@ -33,6 +31,17 @@ const partsPer = {
         plural: 'Parts-per Quadrillion'
       },
       to_anchor: 0.000000001
+    }
+  },
+  imperial: {
+    baseUnit: 'gpg',
+    transform: (val) => (val * 17.1),
+    gpg: {
+      name: {
+        singular: 'Grain-per Gallon',
+        plural: 'Grains-per Gallon'
+      },
+      to_anchor: 1
     }
   }
 }

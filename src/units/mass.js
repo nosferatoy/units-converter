@@ -59,6 +59,13 @@ const mass = {
       },
       to_anchor: 1
     },
+    st: {
+      name: {
+        singular: 'Stone',
+        plural: 'Stone'
+      },
+      to_anchor: 14
+    },
     t: {
       name: {
         singular: 'Ton',
